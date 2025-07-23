@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThoughtScript IDE - Programming with Natural Thoughts</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <h1 class="logo">
+                    <i class="fas fa-brain"></i>
+                    ThoughtScript
+                </h1>
+                <span class="tagline">Programming with Natural Thoughts</span>
+            </div>
+            <div class="header-right">
+                <button class="btn btn-outline" id="examples-btn">
+                    <i class="fas fa-code"></i>
+                    Examples
+                </button>
+                <button class="btn btn-outline" id="docs-btn">
+                    <i class="fas fa-book"></i>
+                    Docs
+                </button>
+                <button class="btn btn-primary" id="run-btn">
+                    <i class="fas fa-play"></i>
+                    Run
+                </button>
+                <button class="btn btn-secondary" id="reset-btn">
+                    <i class="fas fa-redo"></i>
+                    Reset
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-lightbulb"></i> Quick Start</h3>
+                    <div class="quick-tips">
+                        <div class="tip">
+                            <code>think "Hello" as greeting</code>
+                            <span>Declare variables</span>
+                        </div>
+                        <div class="tip">
+                            <code>express greeting</code>
+                            <span>Print to console</span>
+                        </div>
+                        <div class="tip">
+                            <code>consider i from 1 to 5:</code>
+                            <span>Create loops</span>
+                        </div>
+                        <div class="tip">
+                            <code>if x > 5:</code>
+                            <span>Add conditions</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3><i class="fas fa-functions"></i> Built-ins</h3>
+                    <div class="functions-list">
+                        <div class="function">
+                            <code>isEven(n)</code>
+                            <span>Check if even</span>
+                        </div>
+                        <div class="function">
+                            <code>length(s)</code>
+                            <span>String length</span>
+                        </div>
+                        <div class="function">
+                            <code>add(a, b)</code>
+                            <span>Addition</span>
+                        </div>
+                        <div class="function">
+                            <code>uppercase(s)</code>
+                            <span>To uppercase</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Editor and Output -->
+            <div class="editor-container">
+                <div class="editor-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-edit"></i> Code Editor</h3>
+                        <div class="editor-actions">
+                            <button class="btn-icon" id="clear-editor" title="Clear Editor">
+                                <i class="fas fa-eraser"></i>
+                            </button>
+                            <button class="btn-icon" id="copy-code" title="Copy Code">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="editor-wrapper">
+                        <textarea id="code-editor" placeholder="# Welcome to ThoughtScript!
+# Type your thoughts in natural language...
+
+think &quot;Hello, ThoughtScript!&quot; as greeting
+express greeting
+
+consider number from 1 to 5:
+    if isEven(number):
+        remember number as &quot;even&quot;
+    otherwise:
+        remember number as &quot;odd&quot;
+
+show memories"></textarea>
+                        <div class="editor-overlay">
+                            <div class="line-numbers" id="line-numbers"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="output-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-terminal"></i> Output</h3>
+                        <div class="output-actions">
+                            <button class="btn-icon" id="clear-output" title="Clear Output">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            <button class="btn-icon" id="copy-output" title="Copy Output">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="output-wrapper">
+                        <div id="output-console" class="console">
+                            <div class="console-line welcome">
+                                <i class="fas fa-info-circle"></i>
+                                Welcome to ThoughtScript! Click "Run" to execute your thoughts.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Examples Modal -->
+    <div id="examples-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-code"></i> Example Programs</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="examples-list" class="examples-grid">
+                    <!-- Examples will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Documentation Modal -->
+    <div id="docs-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-book"></i> Documentation</h2>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="docs-content">
+                    <div class="docs-section">
+                        <h3>Keywords</h3>
+                        <div id="keywords-list" class="docs-list">
+                            <!-- Keywords will be loaded here -->
+                        </div>
+                    </div>
+                    <div class="docs-section">
+                        <h3>Built-in Functions</h3>
+                        <div id="functions-list" class="docs-list">
+                            <!-- Functions will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <i class="fas fa-brain fa-spin"></i>
+            <span>Processing thoughts...</span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
